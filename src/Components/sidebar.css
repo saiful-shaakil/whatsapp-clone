@@ -48,3 +48,7 @@
   color: gray;
   padding: 10px;
 }
+.sidebar-chat {
+  flex: 1;
+  background-color: white;
+}
