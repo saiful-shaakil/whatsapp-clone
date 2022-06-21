@@ -23,7 +23,11 @@ const Chat = () => {
           </IconButton>
         </div>
       </div>
-      <div className="chat-body"></div>
+      <div className="chat-body">
+        <p className="chat-message">Hey Gusys</p>
+        <p className="chat-message">Hey Gusys</p>
+        <p className="chat-message">Hey Gusys</p>
+      </div>
       <div className="chat-footer"></div>
     </div>
   );

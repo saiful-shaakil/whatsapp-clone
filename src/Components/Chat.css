@@ -26,3 +26,20 @@ p {
   justify-content: space-between;
   min-width: 100px;
 }
+.chat-body {
+  flex: 1;
+  background-image: url("https://i.pinimg.com/originals/35/f3/e9/35f3e9c4b86568b4919949a9307da2a9.png");
+  background-repeat: repeat;
+  background-position: center;
+  padding: 30px;
+  overflow-y: scroll;
+}
+.chat-message {
+  position: relative;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 10px;
+  width: fit-content;
+  background-color: #ffffff;
+  margin-bottom: 30px;
+}
