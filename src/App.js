@@ -1,5 +1,5 @@
-import { Chat } from "@mui/icons-material";
 import "./App.css";
+import Chat from "./Components/Chat";
 import Sidebar from "./Components/Sidebar";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <div className="app-body">
       <div className="main-body">
         <Sidebar></Sidebar>
-        <Chat></Chat>
+        <Chat />
       </div>
     </div>
   );
