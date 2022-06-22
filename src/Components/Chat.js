@@ -6,11 +6,13 @@ import {
   SearchOutlined,
 } from "@mui/icons-material";
 import { Avatar, IconButton } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import "./Chat.css";
 const Chat = () => {
+  const [input, setInput] = useState("");
   const sendMessage = (e) => {
     e.preventDefault();
+    console.log(input);
   };
   return (
     <div className="chat">
@@ -41,7 +43,13 @@ const Chat = () => {
       <div className="chat-footer">
         <InsertEmoticon />
         <form>
-          <input type="text" placeholder="Type a message" name="" id="" />
+          <input
+            onChange={(e) => setInput(e.target.value)}
+            type="text"
+            placeholder="Type a message"
+            name=""
+            id=""
+          />
           <button type="submit" onClick={sendMessage}>
             Send a message
           </button>
