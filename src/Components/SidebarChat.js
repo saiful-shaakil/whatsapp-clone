@@ -2,8 +2,9 @@ import { Avatar } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import db from "./firebase.init";
 import "./sidebarChat.css";
+import { Link } from "react-router-dom";
 
-const SidebarChat = ({ addNewChat, name }) => {
+const SidebarChat = ({ addNewChat, name, id }) => {
   const [seed, setSeed] = useState("");
   useEffect(() => {
     setSeed(Math.floor(Math.random() * 6000000));
@@ -18,13 +19,17 @@ const SidebarChat = ({ addNewChat, name }) => {
     }
   };
   return !addNewChat ? (
-    <div className="sidebarChat">
-      <Avatar src={`https://avatars.dicebear.com/api/open-peeps/${seed}.svg`} />
-      <div className="sidebar-chat-info">
-        <h3>{name}</h3>
-        <p>Last message...</p>
+    <Link to={`/rooms/:${id}`}>
+      <div className="sidebarChat">
+        <Avatar
+          src={`https://avatars.dicebear.com/api/open-peeps/${seed}.svg`}
+        />
+        <div className="sidebar-chat-info">
+          <h3>{name}</h3>
+          <p>Last message...</p>
+        </div>
       </div>
-    </div>
+    </Link>
   ) : (
     <div onClick={createChat} className="sidebarChat">
       <div className="sidebar-chat-info">

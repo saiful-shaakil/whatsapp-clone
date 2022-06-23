@@ -6,10 +6,28 @@ import {
   SearchOutlined,
 } from "@mui/icons-material";
 import { Avatar, IconButton } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import "./Chat.css";
+import db from "./firebase.init";
 const Chat = () => {
+  const { roomId } = useParams();
   const [input, setInput] = useState("");
+  const [roomName, setRoomName] = useState("");
+  console.log(
+    db
+      .collection("rooms")
+      .doc(roomId)
+      .onSnapshot((snapshot) => snapshot)
+  );
+
+  useEffect(() => {
+    if (roomId) {
+      db.collection("rooms")
+        .doc(roomId)
+        .onSnapshot((snapshot) => setRoomName(snapshot.name));
+    }
+  }, []);
   const sendMessage = (e) => {
     e.preventDefault();
     console.log(input);
@@ -19,7 +37,7 @@ const Chat = () => {
       <div className="chat-header">
         <Avatar />
         <div className="chat-header-info">
-          <h3>Contact Name</h3>
+          <h3>{roomName}</h3>
           <p>Last seen at ...</p>
         </div>
         <div className="chat-header-right">

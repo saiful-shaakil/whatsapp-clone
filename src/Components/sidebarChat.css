@@ -19,3 +19,6 @@
   margin: 0;
   font-size: 15px;
 }
+.sidebarChat > Link {
+  text-decoration: none;
+}
