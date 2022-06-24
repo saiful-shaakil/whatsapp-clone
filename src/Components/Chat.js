@@ -25,9 +25,9 @@ const Chat = () => {
     if (roomId) {
       db.collection("rooms")
         .doc(roomId)
-        .onSnapshot((snapshot) => setRoomName(snapshot.name));
+        .onSnapshot((snapshot) => setRoomName(snapshot.data().name));
     }
-  }, []);
+  }, [roomId]);
   const sendMessage = (e) => {
     e.preventDefault();
     console.log(input);

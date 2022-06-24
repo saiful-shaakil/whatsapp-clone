@@ -19,7 +19,7 @@ const SidebarChat = ({ addNewChat, name, id }) => {
     }
   };
   return !addNewChat ? (
-    <Link to={`/rooms/:${id}`}>
+    <Link to={`/rooms/${id}`}>
       <div className="sidebarChat">
         <Avatar
           src={`https://avatars.dicebear.com/api/open-peeps/${seed}.svg`}
