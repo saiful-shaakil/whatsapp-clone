@@ -8,8 +8,9 @@ import { Avatar, IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "./sidebar.css";
 import SidebarChat from "./SidebarChat";
-import db from "./firebase.init";
+import db, { auth } from "./firebase.init";
 import { useStateValue } from "./StateProvider";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Sidebar = () => {
   const [rooms, setRooms] = useState([]);
@@ -25,7 +26,10 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <Avatar src={user?.photoURL} />
+        <div className="user">
+          <Avatar src={user?.photoURL} />
+          <h5>{user.displayName}</h5>
+        </div>
         <div className="sidebar-header-right">
           <IconButton>
             <DonutLarge />

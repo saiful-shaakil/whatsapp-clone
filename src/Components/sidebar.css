@@ -3,6 +3,13 @@
   flex-direction: column;
   flex: 0.35;
 }
+.user {
+  display: flex;
+  align-items: center;
+}
+.user > h5 {
+  margin-left: 10px;
+}
 
 .sidebar-header {
   display: flex;
@@ -42,7 +49,11 @@
 
 .sidebar-search-container > input {
   border: none;
+  width: 80%;
   margin-left: 10px;
+}
+.sidebar-search-container > input:focus {
+  outline: none;
 }
 
 .sidebar-search > .MuiSvgIcon-root {
@@ -52,4 +63,5 @@
 .sidebar-chat {
   flex: 1;
   background-color: white;
+  overflow-y: scroll;
 }
