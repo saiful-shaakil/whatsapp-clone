@@ -5,12 +5,10 @@ import { Route, Routes } from "react-router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./Components/firebase.init";
 import LogIn from "./Components/LogIn";
+import { useState } from "react";
+import { useStateValue } from "./Components/StateProvider";
 function App() {
-  const { user, loading, error } = useAuthState(auth);
-  if (loading) {
-    return "Loading...";
-  }
-  console.log(user);
+  const [{ user }, dispatch] = useStateValue();
   return (
     <div className="app-body">
       {!user ? (

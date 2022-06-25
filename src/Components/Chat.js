@@ -12,20 +12,23 @@ import "./Chat.css";
 import db from "./firebase.init";
 const Chat = () => {
   const { roomId } = useParams();
+
   const [input, setInput] = useState("");
   const [roomName, setRoomName] = useState("");
-  console.log(
-    db
-      .collection("rooms")
-      .doc(roomId)
-      .onSnapshot((snapshot) => snapshot)
-  );
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     if (roomId) {
       db.collection("rooms")
         .doc(roomId)
         .onSnapshot((snapshot) => setRoomName(snapshot.data().name));
+      db.collection("rooms")
+        .doc(roomId)
+        .collection("messages")
+        .orderBy("timestamp", "asc")
+        .onSnapshot((snapshot) =>
+          setMessages(snapshot.docs.map((doc) => doc.data()))
+        );
     }
   }, [roomId]);
   const sendMessage = (e) => {
@@ -53,10 +56,13 @@ const Chat = () => {
         </div>
       </div>
       <div className="chat-body">
-        <p className={`chat-message ${true && "chat-receiver"}`}>
-          <span className="chat-name">Shahin Abrar</span>
-          Hey Guys <span className="chat-time">5:32 pm</span>
-        </p>
+        {messages.map((message) => (
+          <p className={`chat-message ${true && "chat-receiver"}`}>
+            <span className="chat-name">{message.name}</span>
+            {message.message}
+            <span className="chat-time"></span>
+          </p>
+        ))}
       </div>
       <div className="chat-footer">
         <InsertEmoticon />

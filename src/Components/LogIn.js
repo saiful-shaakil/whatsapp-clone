@@ -1,12 +1,21 @@
 import React from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { auth } from "./firebase.init";
+import { auth, provider } from "./firebase.init";
 import "./Login.css";
+import { actionTypes } from "./reducer";
+import { useStateValue } from "./StateProvider";
 const LogIn = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-  if (loading) {
-    return "Loading...";
-  }
+  const [{}, dispatch] = useStateValue();
+  const signInWithGoogle = () => {
+    auth
+      .signInWithPopup(provider)
+      .then((result) => {
+        dispatch({
+          type: actionTypes.SET_USER,
+          user: result?.user,
+        });
+      })
+      .then((error) => console.log(error));
+  };
   return (
     <div>
       <img
@@ -15,7 +24,7 @@ const LogIn = () => {
         alt=""
       />
       <button
-        onClick={() => signInWithGoogle()}
+        onClick={signInWithGoogle}
         aria-label="Login with Google"
         type="button"
         className="google"
